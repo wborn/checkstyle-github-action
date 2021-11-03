@@ -70,6 +70,7 @@ async function run(): Promise<void> {
           // if (annotation.annotation_level == AnnotationLevel.warning)
           //   commandName = 'warning'
 
+          core.info(`[Checkstyle] ${annotation.path}:${annotation.start_line} ${annotation.message}`)
           command.issueCommand(
             commandName,
             {

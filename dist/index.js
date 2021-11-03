@@ -217,6 +217,7 @@ function run() {
                             continue;
                         // if (annotation.annotation_level == AnnotationLevel.warning)
                         //   commandName = 'warning'
+                        core.info(`[Checkstyle] ${annotation.path}:${annotation.start_line} ${annotation.message}`);
                         command.issueCommand(commandName, {
                             file: annotation.path,
                             line: annotation.start_line,
