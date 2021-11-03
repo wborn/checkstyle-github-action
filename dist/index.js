@@ -211,9 +211,12 @@ function run() {
                 else if (mode === 'inline') {
                     for (const annotation of annotations) {
                         // Github only supports "error" and "warning".
-                        let commandName = 'error';
+                        const commandName = 'error';
+                        // ignore warnings
                         if (annotation.annotation_level == github_1.AnnotationLevel.warning)
-                            commandName = 'warning';
+                            continue;
+                        // if (annotation.annotation_level == AnnotationLevel.warning)
+                        //   commandName = 'warning'
                         command.issueCommand(commandName, {
                             file: annotation.path,
                             line: annotation.start_line,
