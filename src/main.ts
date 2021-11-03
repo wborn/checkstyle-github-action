@@ -64,13 +64,14 @@ async function run(): Promise<void> {
           // Github only supports "error" and "warning".
           const commandName = 'error'
 
-          // ignore warnings
-          if (annotation.annotation_level == AnnotationLevel.warning)
+          // ignore anything but failures (but log them)
+          core.info(`[Checkstyle ${annotation.annotation_level}] ${annotation.path}:${annotation.start_line} ${annotation.message}`)
+          if (annotation.annotation_level !== AnnotationLevel.failure)
             continue
+
           // if (annotation.annotation_level == AnnotationLevel.warning)
           //   commandName = 'warning'
 
-          core.info(`[Checkstyle] ${annotation.path}:${annotation.start_line} ${annotation.message}`)
           command.issueCommand(
             commandName,
             {
