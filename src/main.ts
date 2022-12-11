@@ -65,9 +65,10 @@ async function run(): Promise<void> {
           const commandName = 'error'
 
           // ignore anything but failures (but log them)
-          core.info(`[Checkstyle ${annotation.annotation_level}] ${annotation.path}:${annotation.start_line} ${annotation.message}`)
-          if (annotation.annotation_level !== AnnotationLevel.failure)
-            continue
+          core.info(
+            `[Checkstyle ${annotation.annotation_level}] ${annotation.path}:${annotation.start_line} ${annotation.message}`
+          )
+          if (annotation.annotation_level !== AnnotationLevel.failure) continue
 
           // if (annotation.annotation_level == AnnotationLevel.warning)
           //   commandName = 'warning'
